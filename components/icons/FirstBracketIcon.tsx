@@ -1,45 +1,123 @@
-import { motion } from 'motion/react';
+// @ts-nocheck
+'use client';
 
-const leftBracketVariants = {
-  idle: { x: 0, opacity: 0.9 },
-  hover: {
-    x: -2,
-    opacity: 1,
-    transition: { duration: 0.35, repeat: Infinity, repeatType: 'mirror' },
-  },
-} as const;
+import type { Variants } from 'motion/react';
+import { motion, useAnimation } from 'motion/react';
+import type { HTMLAttributes } from 'react';
+import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
 
-const rightBracketVariants = {
-  idle: { x: 0, opacity: 0.9 },
-  hover: {
-    x: 2,
-    opacity: 1,
-    transition: { duration: 0.35, repeat: Infinity, repeatType: 'mirror' },
-  },
-} as const;
+import { cn } from '@/lib/utils';
 
-export function FirstBracketIcon() {
-  return (
-    <motion.svg
-      xmlns='http://www.w3.org/2000/svg'
-      viewBox='-2 -2 28 28'
-      width={32}
-      height={32}
-      fill='none'
-      stroke='currentColor'
-      strokeWidth={3}
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      style={{ overflow: 'visible' }}
-    >
-      <motion.path
-        variants={leftBracketVariants}
-        d='M6 3C3.58901 4.93486 2 8.24345 2 12C2 15.7565 3.58901 19.0651 6 21'
-      />
-      <motion.path
-        variants={rightBracketVariants}
-        d='M18 3C20.411 4.93486 22 8.24345 22 12C22 15.7565 20.411 19.0651 18 21'
-      />
-    </motion.svg>
-  );
+export interface FirstBracketIconHandle {
+  startAnimation: () => void;
+  stopAnimation: () => void;
 }
+
+interface FirstBracketIconProps extends HTMLAttributes<HTMLDivElement> {
+  size?: number;
+}
+
+const BOX_VARIANTS: Variants = {
+  normal: { opacity: 1, scale: 1 },
+  animate: {
+    opacity: [0.85, 1],
+    scale: [0.98, 1.02, 1],
+    transition: { duration: 0.6, repeat: Infinity, repeatType: 'mirror' },
+  },
+};
+
+const CORE_VARIANTS: Variants = {
+  normal: { y: 0, opacity: 1 },
+  animate: {
+    y: [-0.6, 0.6, -0.6],
+    opacity: [0.9, 1, 0.9],
+    transition: { duration: 1, repeat: Infinity, ease: 'easeInOut' },
+  },
+};
+
+const FRAME_VARIANTS: Variants = {
+  normal: { pathLength: 1, opacity: 0.9 },
+  animate: {
+    pathLength: [0.85, 1, 0.85],
+    opacity: [0.75, 1, 0.75],
+    transition: { duration: 1.2, repeat: Infinity, ease: 'easeInOut' },
+  },
+};
+
+const FirstBracketIcon = forwardRef<FirstBracketIconHandle, FirstBracketIconProps>(
+  ({ onMouseEnter, onMouseLeave, className, size = 28, ...props }, ref) => {
+    const controls = useAnimation();
+    const isControlledRef = useRef(false);
+
+    useImperativeHandle(ref, () => {
+      isControlledRef.current = true;
+
+      return {
+        startAnimation: () => controls.start('animate'),
+        stopAnimation: () => controls.start('normal'),
+      };
+    });
+
+    const handleMouseEnter = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (isControlledRef.current) {
+          onMouseEnter?.(e);
+        } else {
+          controls.start('animate');
+        }
+      },
+      [controls, onMouseEnter]
+    );
+
+    const handleMouseLeave = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (isControlledRef.current) {
+          onMouseLeave?.(e);
+        } else {
+          controls.start('normal');
+        }
+      },
+      [controls, onMouseLeave]
+    );
+
+    return (
+      <div
+        className={cn(className)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        {...props}
+      >
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          viewBox='0 0 24 24'
+          width={size}
+          height={size}
+          fill='none'
+          stroke='currentColor'
+          strokeWidth='1.5'
+          strokeLinejoin='round'
+        >
+          <motion.path
+            animate={controls}
+            variants={CORE_VARIANTS}
+            d='M12 11.5C12.4955 11.5 12.9562 11.3015 13.8775 10.9045L14.5423 10.618C16.1808 9.91202 17 9.55902 17 9C17 8.44098 16.1808 8.08798 14.5423 7.38197L13.8775 7.09549C12.9562 6.6985 12.4955 6.5 12 6.5C11.5045 6.5 11.0438 6.6985 10.1225 7.09549L9.45768 7.38197C7.81923 8.08798 7 8.44098 7 9C7 9.55902 7.81923 9.91202 9.45768 10.618L10.1225 10.9045C11.0438 11.3015 11.5045 11.5 12 11.5ZM12 11.5V17.5'
+          />
+          <motion.path
+            animate={controls}
+            variants={BOX_VARIANTS}
+            d='M17 9V15C17 15.559 16.1808 15.912 14.5423 16.618L13.8775 16.9045C12.9562 17.3015 12.4955 17.5 12 17.5C11.5045 17.5 11.0438 17.3015 10.1225 16.9045L9.45768 16.618C7.81923 15.912 7 15.559 7 15V9'
+          />
+          <motion.path
+            animate={controls}
+            variants={FRAME_VARIANTS}
+            d='M9.14426 2.5C6.48724 2.56075 4.93529 2.81456 3.87493 3.87493C2.81456 4.93529 2.56075 6.48724 2.5 9.14426M14.8557 2.5C17.5128 2.56075 19.0647 2.81456 20.1251 3.87493C21.1854 4.93529 21.4392 6.48724 21.5 9.14426M14.8557 21.5C17.5128 21.4392 19.0647 21.1854 20.1251 20.1251C21.1854 19.0647 21.4392 17.5128 21.5 14.8557M9.14426 21.5C6.48724 21.4392 4.93529 21.1854 3.87493 20.1251C2.81456 19.0647 2.56075 17.5128 2.5 14.8557'
+          />
+        </svg>
+      </div>
+    );
+  }
+);
+
+FirstBracketIcon.displayName = 'FirstBracketIcon';
+
+export { FirstBracketIcon };
