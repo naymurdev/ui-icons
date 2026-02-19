@@ -22,7 +22,7 @@ export function FirstBracketIcon() {
   return (
     <motion.svg
       xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 24 24'
+      viewBox='-2 -2 28 28'
       width={32}
       height={32}
       fill='none'
@@ -30,6 +30,7 @@ export function FirstBracketIcon() {
       strokeWidth={3}
       strokeLinecap='round'
       strokeLinejoin='round'
+      style={{ overflow: 'visible' }}
     >
       <motion.path
         variants={leftBracketVariants}
