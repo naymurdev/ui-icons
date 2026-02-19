@@ -1,53 +1,33 @@
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+'use client';
+
+import { motion } from 'motion/react';
+import type { ReactNode } from 'react';
 
 interface AnimatedIconCardProps {
   title: string;
-  description: string;
   icon: ReactNode;
 }
 
 const cardVariants = {
-  idle: { boxShadow: "0 0 0 rgba(0,0,0,0)", y: 0 },
+  idle: { y: 0, boxShadow: '0 0 0 rgba(0,0,0,0)' },
   hover: {
-    boxShadow: "0 12px 30px rgba(15, 23, 42, 0.12)",
     y: -6,
-    transition: { duration: 0.3, ease: "easeOut" },
+    boxShadow: '0 12px 30px rgba(0,0,0,0.25)',
+    transition: { duration: 0.25 },
   },
-};
+} as const;
 
-export function AnimatedIconCard({ title, description, icon }: AnimatedIconCardProps) {
+export function AnimatedIconCard({ title, icon }: AnimatedIconCardProps) {
   return (
     <motion.article
-      initial="idle"
-      whileHover="hover"
+      initial='idle'
+      animate='idle'
+      whileHover='hover'
       variants={cardVariants}
-      style={{
-        borderRadius: 20,
-        border: "1px solid rgba(148, 163, 184, 0.25)",
-        padding: 20,
-        background: "white",
-        display: "grid",
-        gap: 12,
-      }}
+      className='rounded-2xl border border-neutral-800 bg-neutral-950 px-5 py-7'
     >
-      <div
-        style={{
-          width: 56,
-          height: 56,
-          borderRadius: 16,
-          display: "grid",
-          placeItems: "center",
-          background: "rgba(148, 163, 184, 0.12)",
-          color: "#0f172a",
-        }}
-      >
-        {icon}
-      </div>
-      <div style={{ display: "grid", gap: 6 }}>
-        <h3 style={{ margin: 0, fontSize: 18, color: "#0f172a" }}>{title}</h3>
-        <p style={{ margin: 0, color: "#475569", fontSize: 14 }}>{description}</p>
-      </div>
+      <div className='mb-6 flex items-center justify-center text-neutral-100'>{icon}</div>
+      <h3 className='text-center text-base font-medium text-neutral-100'>{title}</h3>
     </motion.article>
   );
 }
