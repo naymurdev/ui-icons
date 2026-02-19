@@ -13,9 +13,9 @@ const cardVariants = {
   hover: {
     y: -6,
     boxShadow: '0 12px 30px rgba(0,0,0,0.25)',
-    transition: { duration: 0.25, ease: 'easeOut' },
+    transition: { duration: 0.25 },
   },
-};
+} as const;
 
 export function AnimatedIconCard({ title, icon }: AnimatedIconCardProps) {
   return (

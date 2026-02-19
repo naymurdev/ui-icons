@@ -3,12 +3,12 @@ import { motion } from 'motion/react';
 const compassVariants = {
   idle: { rotate: 0 },
   hover: { rotate: 30, transition: { duration: 0.35, repeat: Infinity, repeatType: 'mirror' } },
-};
+} as const;
 
 const needleVariants = {
   idle: { scale: 1 },
   hover: { scale: 1.15, transition: { duration: 0.25, repeat: Infinity, repeatType: 'mirror' } },
-};
+} as const;
 
 export function CompassIcon() {
   return (

@@ -3,12 +3,12 @@ import { motion } from 'motion/react';
 const shieldVariants = {
   idle: { rotate: 0 },
   hover: { rotate: -8, transition: { duration: 0.25, repeat: Infinity, repeatType: 'mirror' } },
-};
+} as const;
 
 const checkVariants = {
   idle: { pathLength: 0.8, opacity: 0.8 },
   hover: { pathLength: 1, opacity: 1, transition: { duration: 0.3, repeat: Infinity, repeatType: 'mirror' } },
-};
+} as const;
 
 export function ShieldIcon() {
   return (

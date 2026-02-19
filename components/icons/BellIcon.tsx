@@ -3,12 +3,12 @@ import { motion } from 'motion/react';
 const bellVariants = {
   idle: { rotate: 0 },
   hover: { rotate: [-8, 8, -4, 4, 0], transition: { duration: 0.45, repeat: Infinity, repeatType: 'loop' } },
-};
+} as const;
 
 const clapperVariants = {
   idle: { y: 0 },
   hover: { y: 2, transition: { duration: 0.2, repeat: Infinity, repeatType: 'mirror' } },
-};
+} as const;
 
 export function BellIcon() {
   return (

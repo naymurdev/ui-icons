@@ -3,12 +3,12 @@ import { motion } from 'motion/react';
 const rocketVariants = {
   idle: { y: 0 },
   hover: { y: -2, transition: { duration: 0.25, repeat: Infinity, repeatType: 'mirror' } },
-};
+} as const;
 
 const flameVariants = {
   idle: { scaleY: 1, opacity: 0.7 },
   hover: { scaleY: 1.4, opacity: 1, transition: { duration: 0.2, repeat: Infinity, repeatType: 'mirror' } },
-};
+} as const;
 
 export function RocketIcon() {
   return (

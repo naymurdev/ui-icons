@@ -6,7 +6,7 @@ const iconVariants = {
     y: -1,
     transition: { duration: 0.25, repeat: Infinity, repeatType: 'mirror' },
   },
-};
+} as const;
 
 const lensVariants = {
   idle: { scale: 1 },
@@ -14,7 +14,7 @@ const lensVariants = {
     scale: 1.08,
     transition: { duration: 0.25, repeat: Infinity, repeatType: 'mirror' },
   },
-};
+} as const;
 
 const handleVariants = {
   idle: { rotate: 0, x: 0, y: 0 },
@@ -24,7 +24,7 @@ const handleVariants = {
     y: 1.5,
     transition: { duration: 0.25, repeat: Infinity, repeatType: 'mirror' },
   },
-};
+} as const;
 
 export function SearchIcon() {
   return (

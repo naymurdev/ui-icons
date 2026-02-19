@@ -3,12 +3,12 @@ import { motion } from 'motion/react';
 const sparkleVariants = {
   idle: { rotate: 0, scale: 1 },
   hover: { rotate: 20, scale: 1.1, transition: { duration: 0.3, repeat: Infinity, repeatType: 'mirror' } },
-};
+} as const;
 
 const dotVariants = {
   idle: { opacity: 0.6, scale: 1 },
   hover: { opacity: 1, scale: 1.4, transition: { duration: 0.25, repeat: Infinity, repeatType: 'mirror' } },
-};
+} as const;
 
 export function SparkleIcon() {
   return (
