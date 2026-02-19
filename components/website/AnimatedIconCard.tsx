@@ -1,5 +1,7 @@
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+'use client';
+
+import { motion } from 'motion/react';
+import type { ReactNode } from 'react';
 
 interface AnimatedIconCardProps {
   title: string;
@@ -8,46 +10,32 @@ interface AnimatedIconCardProps {
 }
 
 const cardVariants = {
-  idle: { boxShadow: "0 0 0 rgba(0,0,0,0)", y: 0 },
+  idle: { y: 0, boxShadow: '0 0 0 rgba(0,0,0,0)' },
   hover: {
-    boxShadow: "0 12px 30px rgba(15, 23, 42, 0.12)",
     y: -6,
-    transition: { duration: 0.3, ease: "easeOut" },
+    boxShadow: '0 12px 30px rgba(0,0,0,0.25)',
+    transition: { duration: 0.25, ease: 'easeOut' },
   },
 };
 
-export function AnimatedIconCard({ title, description, icon }: AnimatedIconCardProps) {
+export function AnimatedIconCard({
+  title,
+  description,
+  icon,
+}: AnimatedIconCardProps) {
   return (
     <motion.article
-      initial="idle"
-      whileHover="hover"
+      initial='idle'
+      animate='idle'
+      whileHover='hover'
       variants={cardVariants}
-      style={{
-        borderRadius: 20,
-        border: "1px solid rgba(148, 163, 184, 0.25)",
-        padding: 20,
-        background: "white",
-        display: "grid",
-        gap: 12,
-      }}
+      className='group rounded-2xl border border-neutral-800 bg-neutral-950 p-5 transition-colors hover:border-neutral-700'
     >
-      <div
-        style={{
-          width: 56,
-          height: 56,
-          borderRadius: 16,
-          display: "grid",
-          placeItems: "center",
-          background: "rgba(148, 163, 184, 0.12)",
-          color: "#0f172a",
-        }}
-      >
+      <div className='mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-neutral-900 text-neutral-100'>
         {icon}
       </div>
-      <div style={{ display: "grid", gap: 6 }}>
-        <h3 style={{ margin: 0, fontSize: 18, color: "#0f172a" }}>{title}</h3>
-        <p style={{ margin: 0, color: "#475569", fontSize: 14 }}>{description}</p>
-      </div>
+      <h3 className='text-base font-semibold text-neutral-100'>{title}</h3>
+      <p className='mt-1 text-sm text-neutral-400'>{description}</p>
     </motion.article>
   );
 }

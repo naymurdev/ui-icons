@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { GapPattern } from '@/components/website/gap-pattern';
 import NewItemsLoading from '@/components/website/new-items-loading';
 import Header from '@/components/website/header';
+import { AnimatedIconLibrary } from '@/components/website/AnimatedIconLibrary';
 
 type Profile = {
   href: string;
@@ -312,6 +313,17 @@ export default function Home() {
                   Trusted by 1000+ users
                 </div>
               </div>
+            </div>
+            <div className='mt-10 rounded-3xl border border-neutral-800 bg-black p-6 sm:p-8'>
+              <div className='mx-auto mb-8 max-w-2xl text-center'>
+                <h2 className='text-3xl font-semibold tracking-tight text-white sm:text-4xl'>
+                  Beautifully crafted animated icons
+                </h2>
+                <p className='mt-3 text-sm text-neutral-400 sm:text-base'>
+                  Hover any icon card to instantly preview its micro-animation.
+                </p>
+              </div>
+              <AnimatedIconLibrary />
             </div>
           </article>
 
