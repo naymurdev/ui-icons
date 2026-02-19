@@ -2,12 +2,12 @@ import { motion } from 'motion/react';
 
 const heartVariants = {
   idle: { scale: 1 },
-  hover: { scale: 1.08, transition: { duration: 0.25 } },
+  hover: { scale: 1.08, transition: { duration: 0.25, repeat: Infinity, repeatType: 'mirror' } },
 };
 
 const pulseVariants = {
   idle: { pathLength: 0.6, opacity: 0.6 },
-  hover: { pathLength: 1, opacity: 1, transition: { duration: 0.3 } },
+  hover: { pathLength: 1, opacity: 1, transition: { duration: 0.3, repeat: Infinity, repeatType: 'mirror' } },
 };
 
 export function HeartPulseIcon() {

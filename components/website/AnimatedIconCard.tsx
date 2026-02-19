@@ -5,7 +5,6 @@ import type { ReactNode } from 'react';
 
 interface AnimatedIconCardProps {
   title: string;
-  description: string;
   icon: ReactNode;
 }
 
@@ -18,24 +17,17 @@ const cardVariants = {
   },
 };
 
-export function AnimatedIconCard({
-  title,
-  description,
-  icon,
-}: AnimatedIconCardProps) {
+export function AnimatedIconCard({ title, icon }: AnimatedIconCardProps) {
   return (
     <motion.article
       initial='idle'
       animate='idle'
       whileHover='hover'
       variants={cardVariants}
-      className='group rounded-2xl border border-neutral-800 bg-neutral-950 p-5 transition-colors hover:border-neutral-700'
+      className='rounded-2xl border border-neutral-800 bg-neutral-950 px-5 py-7'
     >
-      <div className='mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-neutral-900 text-neutral-100'>
-        {icon}
-      </div>
-      <h3 className='text-base font-semibold text-neutral-100'>{title}</h3>
-      <p className='mt-1 text-sm text-neutral-400'>{description}</p>
+      <div className='mb-6 flex items-center justify-center text-neutral-100'>{icon}</div>
+      <h3 className='text-center text-base font-medium text-neutral-100'>{title}</h3>
     </motion.article>
   );
 }

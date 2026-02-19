@@ -13,56 +13,16 @@ import { SparkleIcon } from '@/components/icons/SparkleIcon';
 import { AnimatedIconCard } from './AnimatedIconCard';
 
 const cards = [
-  {
-    title: 'Smart Chat',
-    description: 'Animated message bubble with stroke draw.',
-    icon: <ChatIcon />,
-  },
-  {
-    title: 'Shielded Data',
-    description: 'Tilted shield + checkmark draw.',
-    icon: <ShieldIcon />,
-  },
-  {
-    title: 'Fast Search',
-    description: 'Zooming lens with rotating handle.',
-    icon: <SearchIcon />,
-  },
-  {
-    title: 'Sparkle Boost',
-    description: 'Twisting sparkle with twinkling dots.',
-    icon: <SparkleIcon />,
-  },
-  {
-    title: 'Launch',
-    description: 'Lift-off rocket with flickering flame.',
-    icon: <RocketIcon />,
-  },
-  {
-    title: 'Pulse Care',
-    description: 'Beating heart with animated pulse line.',
-    icon: <HeartPulseIcon />,
-  },
-  {
-    title: 'Alerts',
-    description: 'Swinging bell with a subtle clapper bounce.',
-    icon: <BellIcon />,
-  },
-  {
-    title: 'Cloud Sync',
-    description: 'Cloud lift with rotating sync arrows.',
-    icon: <CloudSyncIcon />,
-  },
-  {
-    title: 'Compass',
-    description: 'Rotating compass with a scaling needle.',
-    icon: <CompassIcon />,
-  },
-  {
-    title: 'Lightning',
-    description: 'Punchy bolt with sparking accents.',
-    icon: <LightningIcon />,
-  },
+  { title: 'chat', icon: <ChatIcon /> },
+  { title: 'shield', icon: <ShieldIcon /> },
+  { title: 'search', icon: <SearchIcon /> },
+  { title: 'sparkle', icon: <SparkleIcon /> },
+  { title: 'rocket', icon: <RocketIcon /> },
+  { title: 'heart-pulse', icon: <HeartPulseIcon /> },
+  { title: 'bell', icon: <BellIcon /> },
+  { title: 'cloud-sync', icon: <CloudSyncIcon /> },
+  { title: 'compass', icon: <CompassIcon /> },
+  { title: 'lightning', icon: <LightningIcon /> },
 ];
 
 export function AnimatedIconLibrary() {

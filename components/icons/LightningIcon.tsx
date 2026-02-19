@@ -2,12 +2,12 @@ import { motion } from 'motion/react';
 
 const boltVariants = {
   idle: { y: 0 },
-  hover: { y: -2, transition: { duration: 0.2 } },
+  hover: { y: -2, transition: { duration: 0.2, repeat: Infinity, repeatType: 'mirror' } },
 };
 
 const sparkVariants = {
   idle: { opacity: 0.6, scale: 1 },
-  hover: { opacity: 1, scale: 1.3, transition: { duration: 0.2 } },
+  hover: { opacity: 1, scale: 1.3, transition: { duration: 0.2, repeat: Infinity, repeatType: 'mirror' } },
 };
 
 export function LightningIcon() {

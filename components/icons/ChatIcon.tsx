@@ -2,12 +2,12 @@ import { motion } from 'motion/react';
 
 const bubbleVariants = {
   idle: { scale: 1 },
-  hover: { scale: 1.05, transition: { duration: 0.25 } },
+  hover: { scale: 1.05, transition: { duration: 0.25, repeat: Infinity, repeatType: 'mirror' } },
 };
 
 const strokeVariants = {
   idle: { pathLength: 1 },
-  hover: { pathLength: 0.7, transition: { duration: 0.3 } },
+  hover: { pathLength: 0.7, transition: { duration: 0.3, repeat: Infinity, repeatType: 'mirror' } },
 };
 
 export function ChatIcon() {
